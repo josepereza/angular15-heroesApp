@@ -1,0 +1,43 @@
+
+<mat-card class="example-card">
+    <mat-card-header >
+      <div mat-card-avatar class="mb-5" >    <img mat-card-image [src]="heroe | heroImage" width="100%" [alt]="heroe.superhero">
+      </div>
+      <mat-card-title>{{heroe.superhero}}</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image [src]="'assets/heroes/'+heroe.id+'.jpg'" width="100%" alt="Photo of a Shiba Inu"> -->
+    <img mat-card-image [src]="heroe | heroImage" width="100%" [alt]="heroe.superhero">
+    <mat-card-content>
+      <h4>{{heroe.publisher}}</h4>
+      <strong>Primera aparicion</strong>{{heroe.first_appearance}}
+      <br>
+      <mat-chip-listbox aria-label="Dog selection">
+        <mat-chip *ngFor="let name of heroe.characters.split(',')">
+         {{name}}
+        </mat-chip>
+       
+      </mat-chip-listbox>
+    </mat-card-content>
+    <mat-card-actions class="flex justify-content-around">
+
+    <button mat-button
+      mat-raised
+      color="primary"
+      [routerLink]="['/heroes/edit', heroe.id ]">
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button
+    
+      mat-raised
+      [routerLink]="['/heroes', heroe.id ]">
+      <mat-icon>more_horiz</mat-icon>
+      Más
+    </button>
+
+    </mat-card-actions>
+  </mat-card>

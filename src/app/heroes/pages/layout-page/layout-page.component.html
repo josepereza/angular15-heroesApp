@@ -1,0 +1,42 @@
+
+
+ <mat-drawer-container class="example-container" autosize>
+    <mat-toolbar>
+        <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+         <mat-icon >menu</mat-icon>
+       </button>
+       <span>My App</span>
+       <span class="example-spacer"></span>
+       <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+         <mat-icon>favorite</mat-icon>
+       </button>
+       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+     </mat-toolbar>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+       
+      <h2>Menu</h2>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+      <mat-nav-list>
+          <mat-list-item *ngFor="let item of sidebarItems"
+          (click)="drawer.toggle()" 
+          [routerLink]="item.url"
+          >
+             <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+             {{item.label}}
+      </mat-list-item>
+      </mat-nav-list>
+    
+    </mat-drawer>
+  
+    <div class="container p-4">
+     <router-outlet></router-outlet>
+
+    </div>
+  
+  </mat-drawer-container>
+
