@@ -13,7 +13,6 @@ export const authFuncionalGuard: CanActivateFn = (route, state) => {
       return !value ? router.navigate(['/auth/login']) : true
     })
   )
-
   
-  return authentication;
+  
 };
