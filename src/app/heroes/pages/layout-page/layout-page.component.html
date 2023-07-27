@@ -13,6 +13,13 @@
        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>share</mat-icon>
       </button>
+      <span class="spacer"></span>
+
+      <span>{{ user?.email }}</span>
+  
+      <button mat-button (click)="onLogout()">
+        Logout
+      </button>
      </mat-toolbar>
     <mat-drawer #drawer class="example-sidenav" mode="side">
        

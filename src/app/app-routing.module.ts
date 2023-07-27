@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from './shared/error404-page/error404-page.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { authFuncionalGuard } from './auth/guards/auth-funcional.guard';
 
 const routes: Routes = [
   {
     path:'heroes' ,
-    loadChildren:()=>import('./heroes/heroes.module').then(m=>m.HeroesModule)
+    loadChildren:()=>import('./heroes/heroes.module').then(m=>m.HeroesModule),
+    canActivate:[authFuncionalGuard]
   },
   {
     path:'auth',
