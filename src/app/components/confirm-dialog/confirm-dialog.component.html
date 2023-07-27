@@ -1,0 +1,11 @@
+<div class="p-3">
+    <h1 mat-dialog-title>Esta seguro?</h1>
+<div mat-dialog-content>
+  <p>Este proceso no es reversible</p>
+ 
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">No Thanks</button>
+  <button  mat-raised-button color="primary" (click)="onConfirm()"  cdkFocusInitial>Ok</button>
+</div>
+</div>
