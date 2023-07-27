@@ -5,6 +5,7 @@ import { HeroeService } from '../../services/heroe.service';
 import { Heroe } from '../../interfaces/heroe'
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-new-page',
   templateUrl: './new-page.component.html',
@@ -29,7 +30,8 @@ public publishers=[
 constructor(
   private heroService:HeroeService,
   private activatedRoute:ActivatedRoute,
-  private router:Router
+  private router:Router,
+  private snackBar:MatSnackBar
   ){
 
 
@@ -41,7 +43,7 @@ constructor(
     .pipe(
       switchMap(({id})=>this.heroService.getHeroById(id)),
 
-    ).subscribe((heroe:any)=>{
+    ).subscribe((heroe)=>{
       if (!heroe) return  this.router.navigateByUrl('/');
     
       this.heroForm.reset(heroe);
@@ -58,14 +60,18 @@ onSubmit():void{
   if (this.currentHeroe.id){
     this.heroService.updateHero(this.currentHeroe)
     .subscribe(heroe=>{
-
+    this.showSnackBar(`${heroe.superhero } updated`)
     });
     return
   }
-  this.heroService.addHero(this.currentHeroe).subscribe(data=>{
-    console.log(data)
+  this.heroService.addHero(this.currentHeroe).subscribe(heroe=>{
+    this.showSnackBar(`${heroe.superhero } saved`)
   })
   
 }
 
+showSnackBar(mensaje:string){
+  this.snackBar.open(mensaje , 'done',{duration:3400})
+
+}
 }
